@@ -16,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool rememberMe = true;
+
   bool _obscureText = true;
   // GetStorage currentUserStored = GetStorage();
   TextEditingController _passwordController = TextEditingController();
@@ -140,6 +142,22 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         SizedBox(
                           height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: rememberMe,
+                                onChanged: (value) {
+                                  setState(() {
+                                    rememberMe = value!;
+                                  });
+                                },
+                              ),
+                              Text("Remember me"),
+                            ],
+                          ),
                         ),
                         // Padding(
                         //   padding: const EdgeInsets.all(8.0),
