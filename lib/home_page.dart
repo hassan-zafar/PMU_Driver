@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   List<Reservation> reservations = [];
   @override
   initState() {
-    LocationService().listenLocation(location, 30, 30);
+    LocationService().listenLocation(location, 5000, 30);
     refresh_timer =
         Timer.periodic(Duration(seconds: 120), (Timer t) => refresh_alert());
     super.initState();

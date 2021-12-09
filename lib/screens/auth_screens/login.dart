@@ -2,7 +2,6 @@ import 'package:ceo_transport/constants/commonUIFunctions.dart';
 import 'package:ceo_transport/constants/constants.dart';
 import 'package:ceo_transport/database/auth_methods.dart';
 import 'package:ceo_transport/database/user_local_data.dart';
-import 'package:ceo_transport/screens/auth_screens/forgetPasswordPage.dart';
 import 'package:ceo_transport/tools/custom_toast.dart';
 import 'package:ceo_transport/tools/show_loading.dart';
 import 'package:flutter/material.dart';
@@ -140,22 +139,27 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               Checkbox(
                                 value: rememberMe,
+                                fillColor:
+                                    MaterialStateProperty.all(Colors.black),
                                 onChanged: (value) {
                                   setState(() {
                                     rememberMe = value!;
                                   });
                                 },
                               ),
-                              Text("Remember me"),
+                              Text(
+                                "Remember me",
+                                style: TextStyle(fontSize: 14),
+                              ),
                             ],
                           ),
                         ),
@@ -192,12 +196,15 @@ class _LoginPageState extends State<LoginPage> {
                               );
                               if (_driver != null) {
                                 driverDetails = _driver;
-                                UserLocalData.setIsLoggedIn(true);
-                                print(UserLocalData.getIsLoggedIn);
-                                UserLocalData.setUserEmail(
-                                    _emailController.text);
-                                UserLocalData.setUserPassword(
-                                    _passwordController.text);
+                                if (rememberMe) {
+                                  UserLocalData.setIsLoggedIn(true);
+                                  print(UserLocalData.getIsLoggedIn);
+                                  UserLocalData.setUserEmail(
+                                      _emailController.text);
+                                  UserLocalData.setUserPassword(
+                                      _passwordController.text);
+                                }
+
                                 AuthMethod().requestPermission(context);
                               } else {
                                 _emailController.clear();

@@ -6,7 +6,7 @@ import 'package:location/location.dart' as loc;
 class LocationService {
   bool _isRunning = false;
   Future<void> listenLocation(loc.Location location, int milliseconds, double? meters) async {
-    Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    Timer.periodic(Duration(seconds: 5), (Timer timer) {
       if (!_isRunning) {
         _requestPermission(location);
       }
