@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:animations/animations.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ceo_transport/constants/constants.dart';
+import 'package:ceo_transport/database/local_database.dart';
 import 'package:ceo_transport/job_details.dart';
 import 'package:ceo_transport/models/driver_details.dart';
 import 'package:ceo_transport/screens/auth_screens/login.dart';
@@ -384,10 +385,12 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 flex: 1,
                 child: InkWell(
-                  onTap: () =>
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  )),
+                  onTap: () {
+                    LocalDB().logOut();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ));
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         color: Color(0xff27AD55),
